@@ -552,11 +552,12 @@ ARM Macro Assembler    Page 9
               00000000 
               00000000 
 Command Line: --debug --xref --cpu=Cortex-M3 --apcs=interwork --depend=..\objec
-t\startup_stm32f10x_hd.d -o..\object\startup_stm32f10x_hd.o -I"D:\Git\stm32\edp
- onenet\Project\RTE" -IC:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.1.0 -IC:\Keil_v
-5\ARM\CMSIS\Include --predefine="__MICROLIB SETA 1" --predefine="STM32F10X_HD S
-ETA 1" --list=.\startup_stm32f10x_hd.lst ..\Libraries\CMSIS\startup\arm\startup
-_stm32f10x_hd.s
+t\startup_stm32f10x_hd.d -o..\object\startup_stm32f10x_hd.o -I"F:\esp8266\onene
+t esp8266\OneNET_demo_code_kylin-master\OneNET_demo_code_kylin-master\edp onene
+t test\Project\RTE" -IC:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.1.0 -IC:\Keil_v5
+\ARM\CMSIS\Include --predefine="__MICROLIB SETA 1" --predefine="STM32F10X_HD SE
+TA 1" --list=.\startup_stm32f10x_hd.lst ..\Libraries\CMSIS\startup\arm\startup_
+stm32f10x_hd.s
 
 
 

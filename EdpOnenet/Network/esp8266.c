@@ -70,16 +70,17 @@ void ESP8266_Init(void)
 /**
   * @brief  生成LED当前状态的上传数据，分割字符串格式
 **/
-void GetSendBuf(void)
+void GetSendBuf()
 {
 		char text[25] = {0};
-	  u8 hum;
-    u8 temp;
-
+		int wendu;
+		int shidu;
+		DHT11_Read_Data(&wendu,&shidu);
 		LED_GetValue();
-		DHT11_Read_Data(&temp,&hum);
-    printf("wendu: %d ",temp);    
-    printf("sidu: %d \r\n",hum); 
+		printf("red_value: %d ",red_value);
+		printf("green_value: %d ",green_value);
+    printf("wendu: %d ",wendu);    
+    printf("sidu: %d \r\n",shidu); 
 		delay_us(2000000);
 	  delay_us(2000000);
 		memset(send_buf,0,MAX_SEND_BUF_LEN);
@@ -96,12 +97,12 @@ void GetSendBuf(void)
 		strcat(send_buf, ";");
 		
 		strcat(send_buf, "temp_statu,");
-		sprintf(text,"%d",temp);
+		sprintf(text,"%d",wendu);
 		strcat(send_buf, text);
 		strcat(send_buf, ";");
 
 		strcat(send_buf, "hum_statu,");
-		sprintf(text,"%d",hum);
+		sprintf(text,"%d",shidu);
 		strcat(send_buf, text);
 		strcat(send_buf, ";");
 }
@@ -217,10 +218,10 @@ int ESP8266_CheckStatus(int timeOut)
 /**
   * @brief  向平台上传LED当前状态数据
 **/
-void ESP8266_SendDat(void)
+void ESP8266_SendDat()
 {		
-		int32 count=0;
 
+		int32 count=0;
 		memset(usart2_rcv_buf,0,sizeof(usart2_rcv_buf));
 		usart2_rcv_len=0;			
 		printf("%s\r\n","[ESP8266_SendDat]ENTER Senddata...");

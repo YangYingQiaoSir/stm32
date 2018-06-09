@@ -11,14 +11,14 @@ volatile unsigned char  green_value=0;
 void LED_Init(void)
 {
     GPIO_InitTypeDef GPIO_InitStructure;
-    //PC7--对应开发板绿指示灯;DS1
+    //PE5--对应开发板绿指示灯;DS1
     RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOE, ENABLE);
     GPIO_InitStructure.GPIO_Pin = GPIO_Pin_5;
     GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
     GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP;
     GPIO_Init(GPIOE, &GPIO_InitStructure);
 	
-		//PA12---对应开发板红色指示灯；DS0
+		//PB5---对应开发板红色指示灯；DS0
     RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOB, ENABLE);
     GPIO_InitStructure.GPIO_Pin = GPIO_Pin_5;
     GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
@@ -36,24 +36,28 @@ void LED_CmdCtl(void)
 		if((NULL != strstr((const char *)usart2_cmd_buf, "LED red on")))  //约定平台控制命令"LED11"为打开红色LED灯
 		{
 				LED_RED_ON;	
-				red_value=0;
+				printf("receive message LED red on ");
+				red_value=1;
 		}
 		if((NULL != strstr((const char *)usart2_cmd_buf, "LED green on")))  //约定平台控制命令"LED21"为打开绿色LED灯
 		{
 				LED_GREEN_ON;	
-				green_value=0;
+			  printf("receive message LED green on ");
+				green_value=1;
 		}
 	
 		
 		if((NULL != strstr((const char *)usart2_cmd_buf, "LED red off")))  //约定平台控制命令"LED10"为关闭红色LED灯
 		{
-				LED_RED_OFF;	
-				red_value=1;
+				LED_RED_OFF;
+			  printf("receive message LED red off ");
+				red_value=0;
 		}
 		if((NULL != strstr((const char *)usart2_cmd_buf, "LED green off")))  //约定平台控制命令"LED20"为关闭绿色LED灯
 		{
 				LED_GREEN_OFF;
-				green_value=1;	
+			  printf("receive message LED green off ");
+				green_value=0;	
 		}
 
 }

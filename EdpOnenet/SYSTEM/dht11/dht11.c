@@ -91,7 +91,7 @@ for (i=0;i<8;i++)
 //temp:温度值(范围:0~50°)
 //humi:湿度值(范围:20%~90%)
 //返回值：0,正常;1,读取失败
-u8 DHT11_Read_Data(u8 *temp,u8 *humi)    
+u8 DHT11_Read_Data(int *temp,int *humi)    
 {        
  u8 buf[5];
 u8 i;
